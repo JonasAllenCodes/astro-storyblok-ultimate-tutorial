@@ -11,6 +11,12 @@ export default defineConfig({
   integrations: [
     storyblok({
       accessToken: env.STORYBLOK_TOKEN,
+      components: {
+        page: "storyblok/Page",
+        feature: "storyblok/Feature",
+        grid: "storyblok/Grid",
+        teaser: "storyblok/Teaser",
+      },
       apiOptions: {
         region: "us",
       },
