@@ -29,6 +29,9 @@ const { data } = await storyblockApi.get(
     `cdn/stories/${slug === undefined ? "home" : slug}`,
     {
         version: "draft",
+        resolve_relations: [
+            "popular-articles.articles",
+        ],
     }
 );
 

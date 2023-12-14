@@ -18,6 +18,9 @@ export default defineConfig({
         grid: "storyblok/Grid",
         teaser: "storyblok/Teaser",
         hero: "storyblok/Hero",
+        "popular-articles": "storyblok/PopularArticles",
+        "all-articles": "storyblok/AllArticles",
+        article: "storyblok/Article",
       },
       apiOptions: {
         region: "us",
