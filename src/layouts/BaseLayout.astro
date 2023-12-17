@@ -1,5 +1,6 @@
 ---
 import Header from "../components/Header.astro";
+const { language, langSwitch } = Astro.props;
 ---
 
 <html lang="en">
@@ -10,7 +11,7 @@ import Header from "../components/Header.astro";
         <title>@storyblok/astro</title>
     </head>
     <body class="mx-auto">
-        <Header />
+        <Header langSwitch={langSwitch} language={language} />
         <slot />
     </body>
 </html>
