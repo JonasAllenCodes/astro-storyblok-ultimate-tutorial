@@ -11,6 +11,9 @@ export default defineConfig({
   integrations: [
     storyblok({
       accessToken: env.STORYBLOK_TOKEN,
+      ...(env.STORYBLOK_ENV !== 'development' && {
+        bridge: env.STORYBLOK_IS_PREVIEW === "yes"
+      }),
       components: {
         page: "storyblok/Page",
         config: "storyblok/Config",
@@ -28,6 +31,9 @@ export default defineConfig({
     }),
     tailwind()
   ],
+  ...(env.STORYBLOK_ENV !== 'development' && {
+    output: env.STORYBLOK_IS_PREVIEW === 'yes' ? 'server' : 'static'
+  }),
   vite: {
     plugins: [basicSsl()],
     server: {
