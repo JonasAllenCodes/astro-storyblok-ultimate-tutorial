@@ -12,9 +12,7 @@ export default defineConfig({
   integrations: [
     storyblok({
       accessToken: env.STORYBLOK_TOKEN,
-      ...(env.STORYBLOK_ENV !== 'development' && {
-        bridge: env.STORYBLOK_IS_PREVIEW === "yes"
-      }),
+      bridge: env.STORYBLOK_IS_PREVIEW === "yes" ? true :false,
       components: {
         page: "storyblok/Page",
         config: "storyblok/Config",
@@ -32,16 +30,12 @@ export default defineConfig({
     }),
     tailwind()
   ],
-  ...(env.STORYBLOK_ENV !== 'development' && {
-    output: env.STORYBLOK_IS_PREVIEW === 'yes' ? 'server' : 'static'
-  }),
+  output: env.STORYBLOK_IS_PREVIEW === 'yes' ? 'server' : 'static',
   vite: {
     plugins: [basicSsl()],
     server: {
       https: true,
     },
   },
-  ...(env.STORYBLOK_ENV !== 'development' && {
-    adapter: vercel()
-  }),
+  ...env.STORYBLOK_ENV === "preview" ? {adapter: vercel()} : {}
 });
